@@ -1,10 +1,11 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import { registerSchema } from '../schema/register';
 
 // Auth routes
 export default async function authRoutes(fastify: FastifyInstance) {
   
   // POST /auth/register
-  fastify.post('/register', async (request: FastifyRequest<{
+  fastify.post('/register',{schema:registerSchema}, async (request: FastifyRequest<{
     Body: { phoneNumber: string; password: string; }
   }>, reply: FastifyReply) => {
     // Registration logic
