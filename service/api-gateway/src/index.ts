@@ -2,8 +2,11 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { type Context } from 'hono'
 import { authProxy } from './proxy-services/auth-proxy.js';
+import { config } from 'dotenv';
 
+config()
 const app = new Hono()
+
 
 // Health check endpoint
 app.get('/health', (c: Context) => {

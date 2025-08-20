@@ -1,13 +1,13 @@
 import type { Context } from "hono";
+import { env } from "process";
 
-const authServiceUrl = 'http://localhost:3001' // Ideally from env
 
 
 export const authProxy =  async (c: Context) => {
   try {
     const url = new URL(c.req.url);
     console.log(url)
-    const targetUrl = `${authServiceUrl}${url.pathname}${url.search}`;
+    const targetUrl = `${env.AUTH_SERVICE_URL}${url.pathname}${url.search}`;
     
     // Clone the headers from the original request
     const headers = new Headers(c.req.raw.headers);
